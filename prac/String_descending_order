@@ -1,0 +1,38 @@
+//https://programmers.co.kr/learn/courses/30/lessons/12917?language=cpp#
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+string solution(string s) {
+    string answer = "";
+    vector <char> S;
+    vector <char> C;
+  for(int i=0; i<s.size(); i++){
+        if('A'<=s.at(i) && s.at(i)<='Z'){//대문자
+            C.push_back(s.at(i));
+        }else if('a'<=s.at(i) && s.at(i)<='z'){
+            S.push_back(s.at(i));
+        }
+    }
+    sort(C.rbegin(),C.rend());
+    sort(S.rbegin(),S.rend());  
+    for(int i=0; i<s.size();i++){
+        if(S.size()!=0){
+            answer+=S.at(0);
+            S.erase(S.begin());
+        }else{
+            answer+=C.at(0);
+            C.erase(C.begin());
+        }
+    }
+    return answer;
+}
+/*
+  string도 vector와 마찬가지로 sort함수를 쓸 수 있다
+  
+  string solution(string s) {
+    sort (s.begin(), s.end(), greater<char>());
+    return s;
+}
+*/
