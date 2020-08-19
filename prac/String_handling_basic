@@ -13,3 +13,4 @@ bool solution(string s) {
     }else
         return false;
 }
+//숫자인 판별하는 isdigit()
