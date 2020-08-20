@@ -1,0 +1,101 @@
+//https://programmers.co.kr/learn/courses/30/lessons/67256?language=cpp
+#include <string>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+string solution(vector<int> numbers, string hand) {
+    string answer = "";
+    int lx=3,ly=0,rx=3,ry=2;
+    for(int i=0; i<numbers.size();i++){
+        if(numbers.at(i)==1 ||numbers.at(i)==4 ||numbers.at(i)==7){
+            if(numbers.at(i)==1){
+                lx=0; ly=0;
+            }else if(numbers.at(i)==4){
+                lx=1; ly=0;
+            }else if(numbers.at(i)==7){
+                lx=2; ly=0;
+            }
+            answer+="L";
+        }else if(numbers.at(i)==3 ||numbers.at(i)==6 ||numbers.at(i)==9){
+            if(numbers.at(i)==3){
+                rx=0; ry=2;
+            }else if(numbers.at(i)==6){
+                rx=1; ry=2;
+            }else if(numbers.at(i)==9){
+                rx=2; ry=2;
+            }
+            answer+="R";
+        }
+        else if(numbers.at(i)==2 ||numbers.at(i)==5 
+                 ||numbers.at(i)==8||numbers.at(i)==0){
+            if(numbers.at(i)==2){
+                if((abs(0-lx)+abs(1-ly))>(abs(0-rx)+abs(1-ry))){
+                    rx=0,ry=1;
+                    answer+="R";
+                }else if((abs(0-lx)+abs(1-ly))<(abs(0-rx)+abs(1-ry))){
+                    lx=0,ly=1;
+                    answer+="L";
+                }else{
+                    if(hand=="right"){
+                        rx=0,ry=1;
+                        answer+="R";
+                    }else{
+                        lx=0,ly=1;
+                        answer+="L";
+                    }
+                }
+            }else if(numbers.at(i)==5){
+                if((abs(1-lx)+abs(1-ly))>(abs(1-rx)+abs(1-ry))){
+                    rx=1,ry=1;
+                    answer+="R";
+                }else if((abs(1-lx)+abs(1-ly))<(abs(1-rx)+abs(1-ry))){
+                    lx=1,ly=1;
+                    answer+="L";
+                }else{
+                    if(hand=="right"){
+                        rx=1,ry=1;
+                        answer+="R";
+                    }else{
+                        lx=1,ly=1;
+                        answer+="L";
+                    }
+                }
+            }else if(numbers.at(i)==8){
+                if((abs(2-lx)+abs(1-ly))>(abs(2-rx)+abs(1-ry))){
+                    rx=2,ry=1;
+                    answer+="R";
+                }else if((abs(2-lx)+abs(1-ly))<(abs(2-rx)+abs(1-ry))){
+                    lx=2,ly=1;
+                    answer+="L";
+                }else{
+                    if(hand=="right"){
+                        rx=2,ry=1;
+                        answer+="R";
+                    }else{
+                       lx=2,ly=1; 
+                        answer+="L";
+                    }
+                }
+            }else if(numbers.at(i)==0){
+                if((abs(3-lx)+abs(1-ly))>(abs(3-rx)+abs(1-ry))){
+                    rx=3,ry=1;
+                    answer+="R";
+                }else if((abs(3-lx)+abs(1-ly))<(abs(3-rx)+abs(1-ry))){
+                    lx=3,ly=1;
+                    answer+="L";
+                }else{
+                    if(hand=="right"){
+                        rx=3,ry=1;
+                        answer+="R";
+                    }else{
+                        lx=3,ly=1;
+                        answer+="L";
+                    }
+                }
+            }
+        }
+    }
+    return answer;
+}
