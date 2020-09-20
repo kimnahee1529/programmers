@@ -1,0 +1,27 @@
+//https://programmers.co.kr/learn/courses/30/lessons/1845?language=cpp
+#include <vector>
+using namespace std;
+
+int solution(vector<int> nums){
+    int n=0;
+    n=(nums.size()/2);
+    vector<int> v;
+    int answer = 0;
+    for(int i=0; i<nums.size(); i++){
+        int num=0;
+        if(v.size()==n)
+            break;
+        if(v.empty()==1){
+            v.push_back(nums.at(i));
+        }else{
+            for(int j=0; j<v.size(); j++){
+                if(nums.at(i)==v.at(j))
+                    num++;
+            }
+            if(num==0){
+                v.push_back(nums.at(i));
+            }
+        }
+    }
+    return v.size();
+}
